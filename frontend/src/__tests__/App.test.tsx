@@ -15,6 +15,6 @@ describe('when the app is rendered', () => {
         expect(listElements).toHaveLength(1)
 
         expect(within(listElements[0]).getByText('Monoplane'))
-        expect(within(listElements[0]).getByText('Egor'))
+        expect(within(listElements[0]).getByText('egor'))
     })
 })

@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  postgres-db:
+    container_name: vehicles
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: vehicles
+    ports:
+      - "5435:5432"

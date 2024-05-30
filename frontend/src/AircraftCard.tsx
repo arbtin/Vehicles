@@ -7,7 +7,7 @@ const AircraftCard = (props: AircraftCardProps) => {
             <span className="text-xl font-medium capitalize">{airframe}</span>
             <div className="flex items-center gap-1 text-zinc-600">
                 <UserIcon size={16} />
-                <span className="text-sm">{pilot}</span>
+                <span className="text-sm" key={id}>{pilot}</span>
             </div>
         </li>
     )
