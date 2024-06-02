@@ -1,0 +1,8 @@
+{
+  "short_name": "Starter App to show testing",
+  "name": "Vehicle Class App",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background-color": "#FFFFFF"
+}
