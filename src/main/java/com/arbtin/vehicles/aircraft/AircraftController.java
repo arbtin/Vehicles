@@ -29,10 +29,14 @@ public class AircraftController {
 
     @GetMapping("/aircraft/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Aircraft getAircraftById(@PathVariable Long id) {
-        Aircraft targetAircraft = aircraftRepository.findById(id).orElse(null);
-        aircraftRepository.findById(id);
-        return targetAircraft;
+//    @ModelAttribute("Aircraft")
+    public Aircraft getAircraftById(@ModelAttribute("Aircraft") @PathVariable Long id) {
+        Aircraft aircraft = aircraftRepository.findById(id).orElse(null);
+        if (aircraft == null) {
+            throw new AircraftNotFoundException("Aircraft not found with id: " + id);
+        }
+        aircraftRepository.getReferenceById(id); // findbyId
+        return aircraft;
         //return aircraftRepository.findById(id).orElseThrow();
     }
 
@@ -42,5 +46,12 @@ public class AircraftController {
         Aircraft targetAircraft = aircraftRepository.findById(id).orElse(null);
         aircraftRepository.deleteById(id);
         return targetAircraft;
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public class AircraftNotFoundException extends RuntimeException {
+        public AircraftNotFoundException(String message) {
+            super(message);
+        }
     }
 }
