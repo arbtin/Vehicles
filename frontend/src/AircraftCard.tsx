@@ -10,6 +10,10 @@ const AircraftCard = (props: AircraftCardProps) => {
                 <span className="text-sm" key={id}>{pilot}</span>
             </div>
         </li>
+
+
+
+
     )
 }
 

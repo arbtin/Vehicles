@@ -23,6 +23,8 @@ function App() {
 
     return (
         <>
+              <div className='relative overflow-x-auto'>
+                <div className='container mx-auto'>
         <Router>
         <SearchBar />
         <Routes>
@@ -30,6 +32,8 @@ function App() {
             <Route path='/AircraftForm' element={<AircraftForm/>} />
             </Routes>
         </Router>
+        </div>
+        </div>
         </>
     );
 }

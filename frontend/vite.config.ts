@@ -7,6 +7,11 @@ import viteTsconfigPaths from 'vite-tsconfig-paths';
 export default defineConfig({
   plugins: [react(), viteTsconfigPaths(), svgrPlugin()
   ],
+  css: {
+    postcss: {
+      plugins: [tailwindcss()],
+    }
+  }
   server: {
     port: 3000,
     proxy: {

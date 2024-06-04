@@ -28,6 +28,35 @@ function ListComponent({rows}) {
   </TableBody>
   </Table>
   </TableContainer>
+
+
+        <table className='table-auto w-full text-m'>
+            <thead>
+                <tr>
+                    <th scope='col'>#</th>
+                    <th scope='col'>Description</th>
+                    <th scope='col'>Assigned</th>
+                </tr>
+            </thead>
+            <tbody>
+            {props.todos.map(todo => (
+            <TodoRowItem
+             key={todo.rowNumber}
+             rowNumber={todo.rowNumber}
+             rowDescription={todo.rowDescription}
+             rowAssigned={todo.rowAssigned}
+             deleteTodo={props.deleteTodo} />
+            ))}
+            </tbody>
+        </table>
+
+
+        <tr onClick={() => props.deleteTodo(props.rowNumber)}>
+        <th scope='row'>{props.rowNumber}</th>
+        <td>{props.rowDescription}</td>
+        <td>{props.rowAssigned}</td>
+        </tr>
+
   </>
     )
 }
