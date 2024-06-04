@@ -1,6 +1,6 @@
 import { Button, TextField } from '@mui/material'
 import React, { useState } from 'react'
-import { saveAircraft } from '../api/AircraftApi.ts'
+import { newAircraft } from '../api/AircraftApi.ts'
 import { useNavigate } from 'react-router-dom'
 
 export default function Create():  any {
@@ -71,6 +71,6 @@ export default function Create():  any {
                      className='rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>Add Todo</button>
                   </form>
                 </div>
-</>
+    </>
     )
 }

@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react'
-import AircraftCard from './AircraftCard.tsx'
-import { Aircraft } from './types/Aircraft.ts'
+import AircraftCard from '../AircraftCard.tsx'
+import { Aircraft } from '../types/Aircraft.ts'
 
 function App() {
     const [data, setData] = useState<Aircraft[]>([])
@@ -43,7 +43,8 @@ function App() {
 
     return (
         <div className="w-full flex justify-center h-screen overflow-hidden">
-            <div className="flex flex-col overflow-hidden max-w-md w-full m-6 box-border p-6 border border-gray-200 rounded-md shadow">
+            <div
+                className="flex flex-col overflow-hidden max-w-md w-full m-6 box-border p-6 border border-gray-200 rounded-md shadow">
                 <h1 className="text-3xl font-medium text-center">Aircraft</h1>
 
                 <form
