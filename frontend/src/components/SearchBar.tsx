@@ -1,9 +1,4 @@
 import { Link, useLocation } from 'react-router-dom'
-import {
-    Disclosure,
-    DisclosureButton,
-    DisclosurePanel,
-} from '@headlessui/react'
 
 export default function SearchBar() {
     const location = useLocation()
@@ -34,7 +29,7 @@ export default function SearchBar() {
                         {navigation.map((item) => (
                             <li>
                                 <a
-                                    key={item.name}
+                                    
                                     href={item.href}
                                     className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
                                     aria-current={item.current ? 'page' : undefined}

@@ -13,10 +13,10 @@ function App() {
 
     useEffect(() => {
         document.title = 'Aircraft'
-        getAircraft()
+        getAllAircraft()
     }, [])
 
-    const getAircrafts = async () => {
+    const getAllAircraft = async () => {
         const response = await getAllAircraft()
         setRows(response)
     }
@@ -28,7 +28,7 @@ function App() {
                     <Router>
                         <SearchBar />
                         <Routes>
-                            <Route path="/" element={<AircraftList rowns={rows} />} />
+                            <Route path="/" element={<AircraftList rows={rows} />} />
                             <Route path="/AircraftForm" element={<NewAircraft />} />
                         </Routes>
                     </Router>
