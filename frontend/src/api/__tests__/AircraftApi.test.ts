@@ -14,7 +14,7 @@ describe('Aircraft APIs', () => {
             const mockResponse = [DefaultAircraft]
 
             server.use(
-                http.get('/api/aircraft', () => {
+                http.get('/api/v1/aircraft', () => {
                     return HttpResponse.json([...mockResponse])
                 }),
             )
@@ -25,7 +25,7 @@ describe('Aircraft APIs', () => {
 
         test('should reject promise on bad response', async () => {
             server.use(
-                http.get('/api/aircraft', async () => {
+                http.get('/api/v1/aircraft', async () => {
                     return HttpResponse.error()
                 }),
             )
@@ -37,30 +37,30 @@ describe('Aircraft APIs', () => {
     describe('Saving an Aircraft', () => {
         test('should save a valid aircraft', async () => {
 
-            const mockResponse = {...DefaultAircraft, id: 1}
+            const mockResponse = { ...DefaultAircraft, id: 1 }
 
             server.use(
-                http.post('/api/aircraft', async ({request}) => {
+                http.post('/api/v1/aircraft', async ({ request }) => {
                     const data = await request.json() as Aircraft
-                    return HttpResponse.json({...data, id: 1})
-                })
+                    return HttpResponse.json({ ...data, id: 1 })
+                }),
             )
 
-            const actual = await newAircraft(DefaultAircraft);
+            const actual = await newAircraft(DefaultAircraft)
 
-            expect(actual).toEqual(mockResponse);
+            expect(actual).toEqual(mockResponse)
         })
 
         test('should reject promise on bad response', async () => {
-            const expected = new Error('Unable to create new aircraft');
+            const expected = new Error('Unable to create new aircraft')
 
             server.use(
-                http.post('/api/aircraft', async () => {
-                    return HttpResponse.error();
-                })
+                http.post('/api/v1/aircraft', async () => {
+                    return HttpResponse.error()
+                }),
             )
 
-            await expect(newAircraft(DefaultAircraft)).rejects.toThrow(expected);
+            await expect(newAircraft(DefaultAircraft)).rejects.toThrow(expected)
         })
     })
 })

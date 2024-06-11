@@ -4,11 +4,10 @@ const testAirframe = {
     id: 1,
     airframe: 'Monoplane',
     pilot: 'egor',
-    crew_chief_id: null,
 }
 
 export const handlers = [
-    http.get('/api/aircraft', () => {
+    http.get('/api/v1/aircraft', () => {
         return HttpResponse.json([testAirframe])
     }),
 ]

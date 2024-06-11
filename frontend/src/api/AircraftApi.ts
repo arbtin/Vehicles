@@ -3,13 +3,11 @@ import axios from 'axios'
 
 export const getAllAircraft = async (): Promise<Aircraft[]> => {
     try {
-        const response = await fetch('/api/v1/aircraft')
-        if (response.ok) {
-            return await response.json()
-        } else {
-            return Promise.reject(new Error('Error encountered'))
-
+        const response = await axios.get('/api/v1/aircraft')
+        if (response.status !== 200) {
+            return Promise.reject(new Error('Failed to fetch aircraft'))
         }
+        return response.data
     } catch (error) {
         return Promise.reject(error)
     }
@@ -17,7 +15,7 @@ export const getAllAircraft = async (): Promise<Aircraft[]> => {
 
 export const newAircraft = async (aircraft: Omit<Aircraft, 'id'>): Promise<Aircraft> => {
     try {
-        const res = await axios.post<Aircraft>('/api/aircraft', aircraft, {
+        const res = await axios.post<Aircraft>('/api/v1/aircraft', aircraft, {
             headers: {
                 'Content-type': 'application/json',
             },
@@ -30,22 +28,40 @@ export const newAircraft = async (aircraft: Omit<Aircraft, 'id'>): Promise<Aircr
 
 export const deleteAircraft = async (id: number) => {
     try {
-        const res = await axios.delete(`api/aircraft/${id}`)
+        const res = await axios.delete(`api/v1/aircraft/${id}`)
         return res.data
     } catch (error) {
         throw new Error('Could not perform action')
     }
 }
+
+
 /*
-export const createAircraft = async (aircraft : Aircraft): Promise<Aircraft> => {
-    const a = await axios.post('/api/v1/aircraft', aircraft);
-    return a.data;
-}
 
-export const getAircrafts = (): Promise<WithId<Aircraft>[]> => axios
-    .get('/api/v1/aircraft')
-    .then(r => r.data);
+export const submitNineLineRequest = async (newNineLine: NineLineRequestType): Promise<NineLineRequestType> => {
+    if (newNineLine.id !== null) {
+        return Promise.reject(new Error());
+    } else if (newNineLine.location === null) {
+        return Promise.reject(new Error());
+    }
+    try {
+        const response = await axios.post("api/v1/medevac", newNineLine, {
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            }
+        });
 
-    return r.data;
-}
-*/
+        if (response.status !== 201) {
+            return Promise.reject(new Error());
+        }
+
+        return response.data;
+    } catch (error) {
+        return Promise.reject(new Error());
+    }
+};
+
+
+
+* */
