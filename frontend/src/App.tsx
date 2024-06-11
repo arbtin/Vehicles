@@ -1,25 +1,21 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-//import { deleteAircraft, getAllAircraft } from './api/AircraftApi.ts'
-import { Aircraft } from '../types/Aircraft.ts'
-import AircraftList from './components/AircraftList.tsx'
-import SearchBar from './components/SearchBar.tsx'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Route, Routes } from 'react-router-dom'
+import { Aircraft } from './types/Aircraft.ts'
+import SearchBar from './components/SearchBar.tsx'
 import NewAircraft from './components/NewAircraft.tsx'
+import AircraftList from './components/AircraftList.tsx'
+import { getAllAircraft } from './api/AircraftApi.ts'
 
 function App() {
     const [rows, setRows] = useState<Aircraft[]>([])
 
     useEffect(() => {
-        document.title = 'Aircraft'
         getAllAircraft()
+            .then(res => setRows(res))
+            .catch((e) => console.error(e))
     }, [])
-
-    const getAllAircraft = async () => {
-        const response = await getAllAircraft()
-        setRows(response)
-    }
 
     return (
         <>

@@ -1,6 +1,7 @@
-import Aircraft from '../types/Aircraft.tsx'
+import { Aircraft } from '../types/Aircraft.tsx'
+import AircraftCard from '../AircraftCard.tsx'
 
-function ListComponent({ rows }) {
+function ListComponent({ rows: rows }) {
     return (
         <>
             <h1>Aircraft</h1>
@@ -14,18 +15,15 @@ function ListComponent({ rows }) {
                 </thead>
                 <tbody>
                 {rows?.map((row: Aircraft) => {
-                 return (
-                    <>
-                        <td key={row.id} scope={'row'}>{row.id}</td>
-                        <td>{row.airframe}</td>
-                        <td>{row.pilot}</td>
-                        <td>delete</td>
-                    </>
+                    return (
+                        <AircraftCard
+                            key={row.id}
+                            {...row}
+                        />
                     )
                 })}
                 </tbody>
             </table>
-
         </>
     )
 }
