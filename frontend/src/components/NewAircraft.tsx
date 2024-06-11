@@ -7,7 +7,7 @@ export default function Create(): any {
     const redirect = useNavigate()
 
     const [name, setName] = useState('')
-    const [airframe, setAirfram] = useState('')
+    const [airframe, setAirframe] = useState('')
     const [pilot, setPilot] = useState('')
 
     const aircraft = {

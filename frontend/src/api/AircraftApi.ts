@@ -33,10 +33,23 @@ export const newAircraft = async (aircraft: Omit<Aircraft, 'id'>): Promise<Aircr
 
 export const deleteAircraft = async (id: number) => {
     try {
-        const res = await axios.delete('api/aircraft/${id}')
-        return res.data
+        const res = await axios.delete(`api/aircraft/${id}`);
+        return res.data;
     }
     catch (error) {
-        throw new Error("Could not perform action")
+        throw new Error("Could not perform action");
     }
 }
+/*
+export const createAircraft = async (aircraft : Aircraft): Promise<Aircraft> => {
+    const a = await axios.post('/api/v1/aircraft', aircraft);
+    return a.data;
+}
+
+export const getAircrafts = (): Promise<WithId<Aircraft>[]> => axios
+    .get('/api/v1/aircraft')
+    .then(r => r.data);
+
+    return r.data;
+}
+*/

@@ -1,11 +1,11 @@
-import { Link, useLocation } from 'react-router-dom'
+//import { Link, useLocation } from 'react-router-dom'
 
 export default function SearchBar() {
-    const location = useLocation()
+   // const location = useLocation();
 
-    const isActive = (path: string) => {
+/*     const isActive = (path: string) => {
         return location.pathname === path
-    }
+    } */
     const navigation = [
         { name: 'Home', href: '/', current: true },
         { name: 'Create', href: '/create', current: false },

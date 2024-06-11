@@ -13,14 +13,16 @@ function ListComponent({ rows }) {
                 </tr>
                 </thead>
                 <tbody>
-                {rows.map((row: Aircraft) => (
+                {rows?.map((row: Aircraft) => {
+                 return (
                     <>
                         <td key={row.id} scope={'row'}>{row.id}</td>
                         <td>{row.airframe}</td>
                         <td>{row.pilot}</td>
                         <td>delete</td>
                     </>
-                ))}
+                    )
+                })}
                 </tbody>
             </table>
 

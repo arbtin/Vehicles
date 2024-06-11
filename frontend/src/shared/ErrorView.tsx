@@ -1,14 +1,12 @@
-import { Box, Typography } from "@mui/material";
 
 const ErrorView = () => {
     return (
-        <Box bgcolor="white">
-            <Typography variant="h4">Error</Typography>
-            <Typography variant="h6">
-            Generic error page, refactor if you want something more specific.variant
-            </Typography>
-        </Box>
-
+        <div className="bg-white p-4">
+            <h1 className="text-4xl font-semibold">Error</h1>
+            <h2 className="text-2xl">
+                Generic error page, refactor if you want something more specific.
+            </h2>
+        </div>
     );
 };
 

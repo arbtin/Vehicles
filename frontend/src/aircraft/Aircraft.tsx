@@ -92,7 +92,6 @@ function App() {
                                 airframe={item.airframe}
                                 id={item.id}
                                 pilot={item.pilot}
-                                crew_chief_id={item.crew_chief_id}
                             />
                         )
                     })}

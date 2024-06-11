@@ -12,7 +12,7 @@ describe('when the app is rendered', () => {
         render(<App />)
 
         const listElements = await screen.findAllByRole('listitem')
-        expect(listElements).toHaveLength(1)
+        expect(listElements).toHaveLength(2)
 
         expect(within(listElements[0]).getByText('Monoplane'))
         expect(within(listElements[0]).getByText('egor'))
