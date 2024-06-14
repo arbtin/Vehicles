@@ -1,6 +1,7 @@
 package com.arbtin.vehicles.aircraft;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,13 @@ public class AircraftController {
     public Aircraft createAircraft(@RequestBody Aircraft aircraft) {
         return aircraftRepository.save(aircraft);
     }
+
+    // Altenate use of HttoStatus
+/*    @PostMapping("/aircraft")
+    public ResponseEntity<Aircraft> newAircraft(@RequestBody Aircraft aircraft) {
+        Aircraft newAircraft = aircraftRepository.save(aircraft);
+        return new ResponseEntity<>(newAircraft, HttpStatus.CREATED);
+    }*/
 
     @GetMapping("/aircraft")
     @ResponseStatus(HttpStatus.OK)
@@ -46,6 +54,11 @@ public class AircraftController {
         Aircraft targetAircraft = aircraftRepository.findById(id).orElse(null);
         aircraftRepository.deleteById(id);
         return targetAircraft;
+    }
+
+    @PatchMapping("/aircraft")
+    public ResponseEntity<List<Aircraft>> updateAircraft(@RequestBody List<Aircraft> listOfAircraft) {
+        return new ResponseEntity<>(aircraftRepository.updateAllAircraft(listOfAircraft), HttpStatus.OK);
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
