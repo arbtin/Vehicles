@@ -1,7 +1,9 @@
 package com.arbtin.vehicles;
 
-import com.arbtin.vehicles.aircraft.Aircraft;
-import com.arbtin.vehicles.aircraft.AircraftRepository;
+import com.arbtin.vehicles.entity.Aircraft;
+import com.arbtin.vehicles.entity.Pilot;
+import com.arbtin.vehicles.repository.AircraftRepository;
+import com.arbtin.vehicles.service.AircraftService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,17 +18,29 @@ class VehiclesApplicationTests {
     @Autowired
     AircraftRepository aircraftRepository;
 
+    @Autowired
+    AircraftService aircraftService;
+
+    Pilot snoopy = new Pilot(1L, "Snoopy", "the Beagle", 10);
     private final Aircraft aircraft1 = new Aircraft(
             "biplane",
-            "eddie"
+            snoopy
 //			List.of("fighter", "Recon", "Bomber")
     );
 
     private final Aircraft aircraft2 = new Aircraft(
             "monoplane",
-            "waldo"
+            snoopy
 //			List.of("fighter", "Recon", "Bomber")
     );
+
+/*
+    @BeforeEach
+    public void setUp() {
+        var aircraft1DTO = new AircraftDTO(1L,"monowing", "Bob");
+        var aircraft2DTO = new AircraftDTO(2L, "biplane", "Eddie");
+    }
+*/
 
     @Test
     void contextLoads() {
@@ -41,23 +55,26 @@ class VehiclesApplicationTests {
     }
 
     @Test
-    void shouldAllowInsertAndDeleteAircraft() {
-        aircraftRepository.save(aircraft1);
-        aircraftRepository.save(aircraft2);
+    void shouldAllowInsertAndDeleteAircraft(Aircraft aircraft1) {
+//        var aircraft1DTO = new AircraftDTO(1L,"monowing", "Bob");
+//        var aircraft2DTO = new AircraftDTO(2L, "biplane", "Eddie");
 
-        final var aircraft = aircraftRepository.findAll();
+        aircraftService.saveAircraft(aircraft1);
+        aircraftService.saveAircraft(aircraft2);
+
+        final var aircraft = aircraftService.findAllAircraft();
 
         assertThat(aircraft).hasSize(2);
 
-        final var savedObject = aircraftRepository.get(0);
+        final var savedObject = aircraftService.findAllAircraft();
 
-        assertThat(savedObject.getId()).isNotNull();
-        assertThat(savedObject.getLocation()).isEqualTo(request0.getLocation());
-        assertThat(savedObject.getCallsign()).isEqualTo(request0.getCallsign());
+        assertThat(aircraft1.getId()).isNotNull();
+        assertThat(aircraft1.getAirframe()).isEqualTo("monoplane");
+        assertThat(aircraft1.getPilot()).isEqualTo("eddie");
 
-        service.deleteMedevacRequest(request0);
-        service.deleteMedevacRequest(request1);
+        aircraftService.deleteAircraftById(aircraft1.getId());
+        aircraftService.deleteAircraftById(aircraft2.getId());
 
-        assertThat(service.findAllMedevacRequests()).hasSize(0);
+        assertThat(aircraftService.findAllAircraft()).hasSize(0);
     }
 }

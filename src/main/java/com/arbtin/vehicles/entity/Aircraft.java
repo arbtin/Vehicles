@@ -1,7 +1,6 @@
-package com.arbtin.vehicles.aircraft;
+package com.arbtin.vehicles.entity;
 
 import jakarta.persistence.*;
-//import org.example.fullstackguide.pilot.CrewChief;
 
 @Entity
 public class Aircraft {
@@ -9,33 +8,16 @@ public class Aircraft {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String airframe;
-    private String pilot;
-
-/*
-    @ManyToOne()
-    @JoinColumn(name = "crew_chief_id")
-    private CrewChief crew_chief_id;
+    @ManyToOne
+    private Pilot pilot;
 
     public Aircraft() {
     }
-*/
 
-    public Aircraft(String airframe, String pilot) {
+    public Aircraft(String airframe, Pilot pilot) {
         this.airframe = airframe;
         this.pilot = pilot;
     }
-
-    public Aircraft() {
-
-    }
-
-/*
-    public Aircraft(String airframe, String pilot, CrewChief crewChief) {
-        this.airframe = airframe;
-        this.pilot = pilot;
-        this.crew_chief_id = crewChief;
-    }
-*/
 
     public Long getId() {
         return id;
@@ -53,19 +35,15 @@ public class Aircraft {
         this.airframe = airframe;
     }
 
-    public String getPilot() {
+    public Pilot getPilot() {
         return pilot;
     }
 
-    public void setPilot(String pilot) {
+    public void setPilot(Pilot pilot) {
         this.pilot = pilot;
     }
 
 /*    public CrewChief getCrew_chief_id() {
         return crew_chief_id;
-    }
-
-    public void setCrew_chief_id(CrewChief crew_chief_id) {
-        this.crew_chief_id = crew_chief_id;
     }*/
 }

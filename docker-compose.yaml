@@ -8,5 +8,9 @@ services:
       POSTGRES_USER: dev
       POSTGRES_PASSWORD: password
       POSTGRES_DB: vehicles
+      POSTGRES_HOST_AUTH_METHOD: password
     ports:
       - "5435:5432"
+volumes:
+    postgres_data:
+      driver: local
